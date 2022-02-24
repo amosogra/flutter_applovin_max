@@ -25,7 +25,7 @@ apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 32
 
     lintOptions {
         disable 'InvalidPackage'
@@ -33,12 +33,21 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "dev.iori.flutter_applovin_max_example"
-        minSdkVersion 19
-        targetSdkVersion 29
+        applicationId "com.floodcode.bookypedia"
+        minSdkVersion 21
+        targetSdkVersion 32
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
+    }
+
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        encoding 'utf-8'
     }
 
     buildTypes {
@@ -52,4 +61,8 @@ android {
 
 flutter {
     source '../..'
+}
+
+dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
 }

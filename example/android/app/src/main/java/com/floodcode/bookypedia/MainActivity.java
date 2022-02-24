@@ -1,4 +1,4 @@
-package dev.iori.flutter_applovin_max_example;
+package com.floodcode.bookypedia;
 
 import io.flutter.embedding.android.FlutterActivity;
 
