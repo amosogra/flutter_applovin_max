@@ -35,31 +35,31 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Column(
-            children: [
-              const Spacer(),
-              TextButton(
-                onPressed: () async {
-                  isRewardedVideoAvailable = await FlutterApplovinMax.isRewardLoaded(listener);
-                  if (isRewardedVideoAvailable) {
-                    FlutterApplovinMax.showRewardVideo((AppLovinAdListener event) => listener(event));
-                  }
-                },
-                child: const Text('Show Reward Video'),
-              ),
-              TextButton(
-                onPressed: () async {
-                  isInterstitialVideoAvailable = await FlutterApplovinMax.isInterstitialLoaded(listener);
+            child: Column(
+          children: [
+            const Spacer(),
+            TextButton(
+              onPressed: () async {
+                isRewardedVideoAvailable = await FlutterApplovinMax.isRewardLoaded(listener);
+                if (isRewardedVideoAvailable) {
+                  FlutterApplovinMax.showRewardVideo((AppLovinAdListener event) => listener(event));
+                }
+              },
+              child: const Text('Show Reward Video'),
+            ),
+            TextButton(
+              onPressed: () async {
+                await FlutterApplovinMax.showSDKMediationDebugger();
+                /* isInterstitialVideoAvailable = await FlutterApplovinMax.isInterstitialLoaded(listener);
                   if (isInterstitialVideoAvailable) {
                     FlutterApplovinMax.showInterstitialVideo((AppLovinAdListener event) => listener(event));
-                  }
-                },
-                child: const Text('Show Interstitial Video'),
-              ),
-              const Spacer(),
-            ],
-          )
-        ),
+                  } */
+              },
+              child: const Text('Show Mediation Debugger'),
+            ),
+            const Spacer(),
+          ],
+        )),
         bottomNavigationBar: BannerMaxView((AppLovinAdListener event) => print(event), BannerAdSize.banner, 'YOUR_AD_UNIT_ID'),
       ),
     );
