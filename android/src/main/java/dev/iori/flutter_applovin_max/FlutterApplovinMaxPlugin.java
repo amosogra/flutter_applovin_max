@@ -3,12 +3,17 @@ package dev.iori.flutter_applovin_max;
 import android.app.Activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 
 import androidx.annotation.NonNull;
 
 import com.applovin.sdk.AppLovinMediationProvider;
+import com.applovin.sdk.AppLovinPrivacySettings;
 import com.applovin.sdk.AppLovinSdk;
 import com.applovin.sdk.AppLovinSdkConfiguration;
+import com.applovin.sdk.AppLovinUserService;
+import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
+import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 
 import io.flutter.Log;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -78,7 +83,59 @@ public class FlutterApplovinMaxPlugin implements FlutterPlugin, MethodCallHandle
                     AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                         @Override
                         public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
-                            
+                            if ( configuration.getConsentDialogState() != AppLovinSdkConfiguration.ConsentDialogState.APPLIES )
+                            {
+                                // Show user consent dialog
+                                AppLovinUserService userService = AppLovinSdk.getInstance(activity).getUserService();
+                                userService.showConsentDialog(activity, new AppLovinUserService.OnConsentDialogDismissListener() {
+                                    @Override
+                                    public void onDismiss()
+                                    {
+
+                                    }
+                                });
+                                /*new FancyGifDialog.Builder(activity)
+                                        .setTitle("GDPR Compliance Notice")
+                                        .setMessage("We care about your privacy and data security. We keep this app free by showing ads. We’ll partner with Google and use a unique identifier on your device to serve only non-personalized ads.\n" +
+                                                "For information about how Google uses your mobile identifier please visit:\nhttps://policies.google.com/technologies/partner-sites\n\nThe privacy policies for AppLovin can be found here:\nhttps://www.applovin.com/privacy")
+                                        .setNegativeBtnText("Reject")
+                                        //.setTitleTextColor(R.color.titleText)
+                                        //.setDescriptionTextColor(R.color.descriptionText)
+                                        //.setPositiveBtnBackground(R.color.positiveButton)
+                                        .setPositiveBtnText("Grant")
+                                        //.setNegativeBtnBackground(R.color.negativeButton)
+                                        .setGifResource(R.drawable.gif1)
+                                        .isCancellable(true)
+                                        .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                            @Override
+                                            public void onCancel(DialogInterface dialogInterface) {
+
+                                            }
+                                        })
+                                        .OnPositiveClicked(new FancyGifDialogListener() {
+                                            @Override
+                                            public void OnClick() {
+                                                AppLovinPrivacySettings.setHasUserConsent( true, context );
+                                            }
+                                        })
+                                        .OnNegativeClicked(new FancyGifDialogListener() {
+                                            @Override
+                                            public void OnClick() {
+                                                AppLovinPrivacySettings.setHasUserConsent( false, context );
+                                            }
+                                        })
+                                        .build();*/
+                            }
+                            else if ( configuration.getConsentDialogState() == AppLovinSdkConfiguration.ConsentDialogState.DOES_NOT_APPLY )
+                            {
+                                // No need to show consent dialog, proceed with initialization
+                            }
+                            else
+                            {
+                                // Consent dialog state is unknown. Proceed with initialization, but check if the consent
+                                // dialog should be shown on the next application initialization
+                            }
+                            AppLovinPrivacySettings.setIsAgeRestrictedUser( false, context );
                         }
                     });
                     break;
