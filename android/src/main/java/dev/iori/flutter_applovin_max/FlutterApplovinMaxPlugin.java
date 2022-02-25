@@ -35,7 +35,7 @@ public class FlutterApplovinMaxPlugin implements FlutterPlugin, MethodCallHandle
     private InterstitialVideo instanceInter;
     private Context context;
     private MethodChannel channel;
-    public Activity activity;
+    public static Activity activity;
 
     public static FlutterApplovinMaxPlugin getInstance() {
         return instance;
