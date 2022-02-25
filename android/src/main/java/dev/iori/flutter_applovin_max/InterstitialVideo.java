@@ -27,7 +27,7 @@ public class InterstitialVideo implements MaxAdListener {
     }
 
     public boolean IsLoaded() {
-        return InterstitialAd.isReady;
+        return InterstitialAd.isReady();
     }
 
     @Override
