@@ -9,11 +9,11 @@ import io.flutter.Log;
 
 public class InterstitialVideo implements MaxAdListener {
     private MaxInterstitialAd InterstitialAd;
-    private int           retryAttempt;
+    private int retryAttempt;
 
     public void Init(String unitId) {
-        InterstitialAd = new MaxInterstitialAd(unitId, FlutterApplovinMaxPlugin.getInstance().activity );
-        InterstitialAd.setListener( this );
+        InterstitialAd = new MaxInterstitialAd(unitId, FlutterApplovinMaxPlugin.getInstance().activity);
+        InterstitialAd.setListener(this);
         InterstitialAd.loadAd();
     }
 
@@ -27,7 +27,7 @@ public class InterstitialVideo implements MaxAdListener {
     }
 
     public boolean IsLoaded() {
-        return InterstitialAd.isReady();
+        return InterstitialAd.isReady;
     }
 
     @Override

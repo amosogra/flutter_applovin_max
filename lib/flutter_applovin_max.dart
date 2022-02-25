@@ -42,6 +42,14 @@ class FlutterApplovinMax {
     }
   }
 
+  static Future<void> showSDKMediationDebugger() async {
+    try {
+      return await _channel.invokeMethod('ShowMediationDebugger');
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   static Future<void> initRewardAd(String unitId) async {
     try {
       await _channel.invokeMethod<void>('InitRewardAd', <String, dynamic>{'UnitId': unitId});

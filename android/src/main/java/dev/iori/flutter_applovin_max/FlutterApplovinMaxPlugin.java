@@ -26,11 +26,11 @@ import io.flutter.plugin.platform.PlatformViewRegistry;
 
 public class FlutterApplovinMaxPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware {
     private static FlutterApplovinMaxPlugin instance;
-    private static RewardedVideo instanceReward;
-    private static InterstitialVideo instanceInter;
-    private static Context context;
-    private static MethodChannel channel;
-    public static Activity activity;
+    private RewardedVideo instanceReward;
+    private InterstitialVideo instanceInter;
+    private Context context;
+    private MethodChannel channel;
+    public Activity activity;
 
     public static FlutterApplovinMaxPlugin getInstance() {
         return instance;
@@ -80,6 +80,9 @@ public class FlutterApplovinMaxPlugin implements FlutterPlugin, MethodCallHandle
                         public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
                         }
                     });
+                    break;
+                case "ShowMediationDebugger":
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
                     break;
                 case "InitRewardAd":
                     String unitId = call.argument("UnitId").toString();
