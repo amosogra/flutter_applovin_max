@@ -50,7 +50,7 @@
         
         <!-- Applovin Ads -->
         <meta-data android:name="applovin.sdk.key"
-            android:value="GzIogFWmavBX6Fye1XMhDW0bgUog_9UD0mGJTRyuGg11anz0XIUkCTwtSe9Xv2v4y7W7mNXtIuCoJu1BxM2vLC"/>
+            android:value=""/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
