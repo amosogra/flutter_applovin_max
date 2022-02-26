@@ -11,26 +11,26 @@ import com.applovin.mediation.ads.MaxRewardedAd;
 import io.flutter.Log;
 
 public class RewardedVideo implements MaxRewardedAdListener, MaxAdRevenueListener {
-    private MaxRewardedAd RewardedAd;
-    private int           retryAttempt;
+    private MaxRewardedAd rewardedAd;
+    private int retryAttempt;
 
     public void Init(String unitId) {
-        RewardedAd = MaxRewardedAd.getInstance(unitId, FlutterApplovinMaxPlugin.getInstance().activity );
-        RewardedAd.setListener( this );
-        RewardedAd.loadAd();
+        rewardedAd = MaxRewardedAd.getInstance(unitId, FlutterApplovinMaxPlugin.getInstance().activity);
+        rewardedAd.setListener(this);
+        rewardedAd.loadAd();
     }
 
     public void Show() {
         try {
-            if (RewardedAd != null && RewardedAd.isReady() && FlutterApplovinMaxPlugin.getInstance().activity != null)
-                RewardedAd.showAd();
+            if (rewardedAd != null && rewardedAd.isReady() && FlutterApplovinMaxPlugin.getInstance().activity != null)
+                rewardedAd.showAd();
         } catch (Exception e) {
             Log.e("AppLovin", e.toString());
         }
     }
 
     public boolean IsLoaded() {
-        return RewardedAd.isReady();
+        return rewardedAd.isReady();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class RewardedVideo implements MaxRewardedAdListener, MaxAdRevenueListene
     @Override
     public void onAdHidden(MaxAd ad) {
         FlutterApplovinMaxPlugin.getInstance().Callback("AdHidden");
-        RewardedAd.loadAd();
+        rewardedAd.loadAd();
     }
 
     @Override

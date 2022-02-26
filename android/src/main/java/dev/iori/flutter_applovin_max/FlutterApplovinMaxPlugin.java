@@ -3,7 +3,7 @@ package dev.iori.flutter_applovin_max;
 import android.app.Activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
+//import android.content.DialogInterface;
 
 import androidx.annotation.NonNull;
 
@@ -12,8 +12,8 @@ import com.applovin.sdk.AppLovinPrivacySettings;
 import com.applovin.sdk.AppLovinSdk;
 import com.applovin.sdk.AppLovinSdkConfiguration;
 import com.applovin.sdk.AppLovinUserService;
-import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
-import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
+//import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
+//import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 
 import io.flutter.Log;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -31,10 +31,10 @@ import io.flutter.plugin.platform.PlatformViewRegistry;
 
 public class FlutterApplovinMaxPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware {
     private static FlutterApplovinMaxPlugin instance;
-    private RewardedVideo instanceReward;
-    private InterstitialVideo instanceInter;
-    private Context context;
-    private MethodChannel channel;
+    private static RewardedVideo instanceReward;
+    private static InterstitialVideo instanceInter;
+    private static Context context;
+    private static MethodChannel channel;
     public static Activity activity;
 
     public static FlutterApplovinMaxPlugin getInstance() {
@@ -83,7 +83,7 @@ public class FlutterApplovinMaxPlugin implements FlutterPlugin, MethodCallHandle
                     AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                         @Override
                         public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
-                            if ( configuration.getConsentDialogState() != AppLovinSdkConfiguration.ConsentDialogState.APPLIES )
+                            if ( configuration.getConsentDialogState() == AppLovinSdkConfiguration.ConsentDialogState.APPLIES )
                             {
                                 // Show user consent dialog
                                 AppLovinUserService userService = AppLovinSdk.getInstance(activity).getUserService();
@@ -135,7 +135,7 @@ public class FlutterApplovinMaxPlugin implements FlutterPlugin, MethodCallHandle
                                 // Consent dialog state is unknown. Proceed with initialization, but check if the consent
                                 // dialog should be shown on the next application initialization
                             }
-                            AppLovinPrivacySettings.setIsAgeRestrictedUser( false, context );
+                            AppLovinPrivacySettings.setIsAgeRestrictedUser(false, context);
                         }
                     });
                     break;

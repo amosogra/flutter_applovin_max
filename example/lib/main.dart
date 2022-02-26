@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_applovin_max/banner.dart';
 import 'package:flutter_applovin_max/flutter_applovin_max.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  await FlutterApplovinMax.initSDK();
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -12,8 +15,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    FlutterApplovinMax.initRewardAd('YOUR_AD_UNIT_ID');
-    FlutterApplovinMax.initInterstitialAd('YOUR_AD_UNIT_ID');
+    FlutterApplovinMax.initRewardAd('3b5f231261dfd184');
+    //FlutterApplovinMax.initInterstitialAd('YOUR_AD_UNIT_ID');
     super.initState();
   }
 
@@ -60,7 +63,7 @@ class _MyAppState extends State<MyApp> {
             const Spacer(),
           ],
         )),
-        bottomNavigationBar: BannerMaxView((AppLovinAdListener event) => print(event), BannerAdSize.banner, 'YOUR_AD_UNIT_ID'),
+        bottomNavigationBar: BannerMaxView((AppLovinAdListener event) => print(event), BannerAdSize.banner, '110b3253fbd76645'),
       ),
     );
   }

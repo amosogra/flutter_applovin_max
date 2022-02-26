@@ -16,17 +16,17 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
-        maven { url "https://jitpack.io" }
+        //maven { url "https://jitpack.io" }
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 32
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
     }
     lintOptions {
         disable 'InvalidPackage'
@@ -35,5 +35,5 @@ android {
 
 dependencies {
     implementation 'com.applovin:applovin-sdk:+'
-    implementation 'com.github.Shashank02051997:FancyGifDialog-Android:1.4'
+    //implementation 'com.github.Shashank02051997:FancyGifDialog-Android:1.4'
 }
